@@ -16,3 +16,210 @@ MonoBehaviour:
     type: 3}
   <FigureSelectedPrefab>k__BackingField: {fileID: 8887359190753839956, guid: e2792e12d9088426bac6fc2235590668,
     type: 3}
+  <FiguresData>k__BackingField:
+  - <Size>k__BackingField: {x: 2, y: 2}
+    <Points>k__BackingField:
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 0, y: 0}
+      <ColorType>k__BackingField: 1
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 1, y: 0}
+      <ColorType>k__BackingField: 1
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 0, y: 1}
+      <ColorType>k__BackingField: 1
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 1, y: 1}
+      <ColorType>k__BackingField: 1
+  - <Size>k__BackingField: {x: 2, y: 2}
+    <Points>k__BackingField:
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 0, y: 0}
+      <ColorType>k__BackingField: 2
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 1, y: 0}
+      <ColorType>k__BackingField: 2
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 0, y: 1}
+      <ColorType>k__BackingField: 2
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 1, y: 1}
+      <ColorType>k__BackingField: 2
+  - <Size>k__BackingField: {x: 2, y: 2}
+    <Points>k__BackingField:
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 0, y: 0}
+      <ColorType>k__BackingField: 3
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 1, y: 0}
+      <ColorType>k__BackingField: 3
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 0, y: 1}
+      <ColorType>k__BackingField: 3
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 1, y: 1}
+      <ColorType>k__BackingField: 3
+  - <Size>k__BackingField: {x: 2, y: 2}
+    <Points>k__BackingField:
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 0, y: 0}
+      <ColorType>k__BackingField: 4
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 1, y: 0}
+      <ColorType>k__BackingField: 4
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 0, y: 1}
+      <ColorType>k__BackingField: 4
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 1, y: 1}
+      <ColorType>k__BackingField: 4
+  - <Size>k__BackingField: {x: 4, y: 4}
+    <Points>k__BackingField:
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 0, y: 0}
+      <ColorType>k__BackingField: 1
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 1, y: 0}
+      <ColorType>k__BackingField: 1
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 2, y: 0}
+      <ColorType>k__BackingField: 1
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 3, y: 0}
+      <ColorType>k__BackingField: 1
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 0, y: 1}
+      <ColorType>k__BackingField: 1
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 1, y: 1}
+      <ColorType>k__BackingField: 1
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 2, y: 1}
+      <ColorType>k__BackingField: 1
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 3, y: 1}
+      <ColorType>k__BackingField: 1
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 0, y: 2}
+      <ColorType>k__BackingField: 4
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 1, y: 2}
+      <ColorType>k__BackingField: 4
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 2, y: 2}
+      <ColorType>k__BackingField: 4
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 3, y: 2}
+      <ColorType>k__BackingField: 4
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 0, y: 3}
+      <ColorType>k__BackingField: 4
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 1, y: 3}
+      <ColorType>k__BackingField: 4
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 2, y: 3}
+      <ColorType>k__BackingField: 4
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 3, y: 3}
+      <ColorType>k__BackingField: 4
+  - <Size>k__BackingField: {x: 4, y: 4}
+    <Points>k__BackingField:
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 0, y: 0}
+      <ColorType>k__BackingField: 1
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 1, y: 0}
+      <ColorType>k__BackingField: 1
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 2, y: 0}
+      <ColorType>k__BackingField: 3
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 3, y: 0}
+      <ColorType>k__BackingField: 3
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 0, y: 1}
+      <ColorType>k__BackingField: 1
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 1, y: 1}
+      <ColorType>k__BackingField: 1
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 2, y: 1}
+      <ColorType>k__BackingField: 3
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 3, y: 1}
+      <ColorType>k__BackingField: 3
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 0, y: 2}
+      <ColorType>k__BackingField: 4
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 1, y: 2}
+      <ColorType>k__BackingField: 4
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 2, y: 2}
+      <ColorType>k__BackingField: 3
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 3, y: 2}
+      <ColorType>k__BackingField: 3
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 0, y: 3}
+      <ColorType>k__BackingField: 4
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 1, y: 3}
+      <ColorType>k__BackingField: 4
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 2, y: 3}
+      <ColorType>k__BackingField: 3
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 3, y: 3}
+      <ColorType>k__BackingField: 3
+  - <Size>k__BackingField: {x: 4, y: 4}
+    <Points>k__BackingField:
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 0, y: 0}
+      <ColorType>k__BackingField: 1
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 1, y: 0}
+      <ColorType>k__BackingField: 1
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 2, y: 0}
+      <ColorType>k__BackingField: 2
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 3, y: 0}
+      <ColorType>k__BackingField: 2
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 0, y: 1}
+      <ColorType>k__BackingField: 1
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 1, y: 1}
+      <ColorType>k__BackingField: 1
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 2, y: 1}
+      <ColorType>k__BackingField: 2
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 3, y: 1}
+      <ColorType>k__BackingField: 2
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 0, y: 2}
+      <ColorType>k__BackingField: 4
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 1, y: 2}
+      <ColorType>k__BackingField: 4
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 2, y: 2}
+      <ColorType>k__BackingField: 3
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 3, y: 2}
+      <ColorType>k__BackingField: 3
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 0, y: 3}
+      <ColorType>k__BackingField: 4
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 1, y: 3}
+      <ColorType>k__BackingField: 4
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 2, y: 3}
+      <ColorType>k__BackingField: 3
+    - <IsActive>k__BackingField: 1
+      <Coord>k__BackingField: {x: 3, y: 3}
+      <ColorType>k__BackingField: 3

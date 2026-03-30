@@ -1,0 +1,19 @@
+{
+    "name": "Game.FigureSystem.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:fb1c39357d8ac40a3ab9e67aa6f9474a",
+        "GUID:f606334d27b964b60b91fdb7fc71fad9"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
