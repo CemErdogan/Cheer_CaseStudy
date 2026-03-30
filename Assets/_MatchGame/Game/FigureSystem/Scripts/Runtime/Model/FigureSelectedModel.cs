@@ -2,7 +2,7 @@ using Abstractions.FigureSystem;
 
 namespace Game.FigureSystem.Runtime
 {
-    public class FigureModel : IFigureModel
+    public class FigureSelectedModel : IFigureSelectedModel
     {
         public FigureData FigureData { get; set; }
         

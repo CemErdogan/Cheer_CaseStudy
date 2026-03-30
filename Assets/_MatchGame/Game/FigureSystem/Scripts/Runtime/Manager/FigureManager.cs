@@ -1,20 +1,21 @@
+using System;
 using Abstractions.FigureSystem;
 using Zenject;
 
 namespace Game.FigureSystem.Runtime
 {
-    public class FigureManager : IFigureManager, IInitializable
+    public class FigureManager : IFigureManager, IInitializable, IDisposable
     {
-        private readonly Figure.Factory _figureFactory;
-
-        public FigureManager(Figure.Factory figureFactory)
-        {
-            _figureFactory = figureFactory;
-        }
+        [Inject] private readonly Figure.Factory _figureFactory;
 
         public void Initialize()
         {
 
+        }
+
+        public void Dispose()
+        {
+            
         }
     }
 }

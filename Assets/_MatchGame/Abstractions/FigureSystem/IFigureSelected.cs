@@ -1,6 +1,6 @@
 namespace Abstractions.FigureSystem
 {
-    public interface IFigure
+    public interface IFigureSelected
     {
         void Prepare(FigureData data);
     }

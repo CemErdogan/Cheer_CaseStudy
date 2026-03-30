@@ -1,6 +1,6 @@
 namespace Abstractions.FigureSystem
 {
-    public interface IFigureModel
+    public interface IFigureSelectedModel
     {
         FigureData FigureData { get; }
         

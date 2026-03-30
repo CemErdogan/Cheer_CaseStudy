@@ -1,3 +1,4 @@
+using Abstractions.FigureSystem;
 using UnityEngine;
 using Zenject;
 
@@ -9,12 +10,17 @@ namespace Game.FigureSystem.Runtime
         
         public override void InstallBindings()
         {
-            Container.BindFactory<Figure, Figure.Factory>()
+            Container.BindFactory<FigureData, Figure, Figure.Factory>()
                 .FromSubContainerResolve()
-                .ByNewContextPrefab(figureDatabase.FigurePrefab)
+                .ByNewContextPrefab<FigureInstaller>(figureDatabase.FigurePrefab)
                 .UnderTransformGroup("Figures");
 
-            Container.BindInterfacesAndSelfTo<FigureManager>().AsSingle();
+            Container.BindFactory<FigureData, FigureSelected, FigureSelected.Factory>()
+                .FromSubContainerResolve()
+                .ByNewContextPrefab<FigureSelectedInstaller>(figureDatabase.FigurePrefab)
+                .UnderTransformGroup("FigureSelected");
+
+            Container.BindInterfacesAndSelfTo<FigureManager>().FromNew().AsSingle();
         }
     }
 }

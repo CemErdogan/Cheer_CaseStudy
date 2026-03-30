@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Game.FigureSystem.Runtime
 {
-    public class Figure : MonoBehaviour, IFigure
+    public class FigureSelected : MonoBehaviour, IFigureSelected
     {
         [Inject] private readonly SignalBus _signalBus;
         
@@ -13,6 +13,6 @@ namespace Game.FigureSystem.Runtime
             _signalBus.Fire(new FigureSelectedSpawnSignal(data));
         }
         
-        public class Factory : PlaceholderFactory<FigureData, Figure> { }
+        public class Factory : PlaceholderFactory<FigureData, FigureSelected> { }
     }
 }

@@ -6,5 +6,6 @@ namespace Game.FigureSystem.Runtime
     public class FigureDatabase : ScriptableObject
     {
         [field:SerializeField] public GameObject FigurePrefab { get; private set; }
+        [field:SerializeField] public GameObject FigureSelectedPrefab { get; private set; }
     }
 }
