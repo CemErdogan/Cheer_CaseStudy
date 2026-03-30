@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <FigurePrefab>k__BackingField: {fileID: 2492712042016162684, guid: 32b6c0cce1b734cbfaa1edd13a3a0a3f,
     type: 3}
+  <FigureSelectedPrefab>k__BackingField: {fileID: 8887359190753839956, guid: e2792e12d9088426bac6fc2235590668,
+    type: 3}
