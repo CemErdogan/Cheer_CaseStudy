@@ -1,4 +1,5 @@
 using Abstractions.FigureSystem;
+using Game.FigureSystem.Runtime;
 using UnityEditor;
 using UnityEngine;
 
@@ -68,9 +69,8 @@ namespace Game.FigureSystem.Editor
                         
                         if (coord.vector2IntValue.x != col || coord.vector2IntValue.y != row) continue;
                         
-                        var isActive = point.FindPropertyRelative("<IsActive>k__BackingField");
                         var colorType = point.FindPropertyRelative("<ColorType>k__BackingField");
-                        cellColor = GetColor(colorType.intValue, isActive.boolValue);
+                        cellColor = FigureColorUtil.GetColor((ColorType)colorType.intValue);
                         break;
                     }
 
@@ -79,18 +79,6 @@ namespace Game.FigureSystem.Editor
             }
         }
 
-        internal static Color GetColor(int colorIntValue, bool isActive)
-        {
-            if (!isActive) return new Color(0.2f, 0.2f, 0.2f);
-            return colorIntValue switch
-            {
-                0 => new Color(0.55f, 0.55f, 0.55f),
-                1 => Color.red,
-                2 => Color.green,
-                3 => Color.blue,
-                4 => Color.yellow,
-                _ => Color.white
-            };
-        }
+        
     }
 }

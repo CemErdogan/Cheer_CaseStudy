@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Abstractions.FigureSystem;
+using Game.FigureSystem.Runtime;
 using UnityEditor;
 using UnityEngine;
 
@@ -87,19 +89,16 @@ namespace Game.FigureSystem.Editor
                 EditorGUILayout.BeginHorizontal();
                 for (int col = 0; col < _width; col++)
                 {
-                    int pointIdx = FindPointIndex(pointsProp, col, row);
-
-                    bool isActive = false;
-                    int colorInt = 0;
+                    var pointIdx = FindPointIndex(pointsProp, col, row);
+                    var colorInt = 0;
 
                     if (pointIdx >= 0)
                     {
                         var point = pointsProp.GetArrayElementAtIndex(pointIdx);
-                        isActive = point.FindPropertyRelative("<IsActive>k__BackingField").boolValue;
                         colorInt = point.FindPropertyRelative("<ColorType>k__BackingField").intValue;
                     }
 
-                    var cellColor = FigureDrawer.GetColor(colorInt, isActive);
+                    var cellColor = FigureColorUtil.GetColor((ColorType)colorInt);
                     var cellRect = GUILayoutUtility.GetRect(CellSize, CellSize, GUILayout.Width(CellSize), GUILayout.Height(CellSize));
 
                     EditorGUI.DrawRect(cellRect, cellColor);

@@ -13,6 +13,14 @@ namespace Game.FigureSystem.Runtime
             _signalBus.Fire(new FigureSelectedSpawnSignal(data));
         }
         
-        public class Factory : PlaceholderFactory<FigureData, Figure> { }
+        public class Factory : PlaceholderFactory<FigureData, Figure>
+        {
+            public override Figure Create(FigureData data)
+            {
+                var figure = base.Create(data);
+                figure.Prepare(data);
+                return figure;
+            }
+        }
     }
 }

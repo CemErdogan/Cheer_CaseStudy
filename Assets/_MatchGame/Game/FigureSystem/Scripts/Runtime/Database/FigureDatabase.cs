@@ -8,6 +8,7 @@ namespace Game.FigureSystem.Runtime
     {
         [field:SerializeField] public GameObject FigurePrefab { get; private set; }
         [field:SerializeField] public GameObject FigureSelectedPrefab { get; private set; }
+        [field:SerializeField] public GameObject PointPrefab { get; private set; }
 
         [field: SerializeField, EditableFigure] public FigureData[] FiguresData { get; private set; }
     }

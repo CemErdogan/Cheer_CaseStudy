@@ -17,8 +17,13 @@ namespace Game.FigureSystem.Runtime
 
             Container.BindFactory<FigureData, FigureSelected, FigureSelected.Factory>()
                 .FromSubContainerResolve()
-                .ByNewContextPrefab<FigureSelectedInstaller>(figureDatabase.FigurePrefab)
+                .ByNewContextPrefab<FigureSelectedInstaller>(figureDatabase.FigureSelectedPrefab)
                 .UnderTransformGroup("FigureSelected");
+            
+            Container.BindFactory<PointData, Point, Point.Factory>()
+                .FromSubContainerResolve()
+                .ByNewContextPrefab<PointInstaller>(figureDatabase.PointPrefab)
+                .UnderTransformGroup("Points");
 
             Container.BindInterfacesAndSelfTo<FigureManager>().FromNew().AsSingle();
         }

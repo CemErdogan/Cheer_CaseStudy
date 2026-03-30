@@ -16,6 +16,8 @@ MonoBehaviour:
     type: 3}
   <FigureSelectedPrefab>k__BackingField: {fileID: 8887359190753839956, guid: e2792e12d9088426bac6fc2235590668,
     type: 3}
+  <PointPrefab>k__BackingField: {fileID: 9222899958985884384, guid: 0316b2de629454508b044e0fb1cec099,
+    type: 3}
   <FiguresData>k__BackingField:
   - <Size>k__BackingField: {x: 2, y: 2}
     <Points>k__BackingField:
