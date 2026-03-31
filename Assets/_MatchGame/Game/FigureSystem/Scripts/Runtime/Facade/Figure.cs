@@ -7,6 +7,7 @@ namespace Game.FigureSystem.Runtime
     public class Figure : MonoBehaviour, IFigure
     {
         [Inject] private readonly SignalBus _signalBus;
+        [Inject] private readonly Point.Factory _pointFactory;
         
         public void Prepare(FigureData data)
         {
