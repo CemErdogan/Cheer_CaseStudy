@@ -6,11 +6,20 @@ namespace Game.GridSystem.Runtime
 {
     public class Cell : MonoBehaviour, ICell
     {
-        public class Factory : PlaceholderFactory<Cell>
+        [Inject] private readonly SignalBus _signalBus;
+        
+        public void Prepare(CellData data)
         {
-            public override Cell Create()
+            _signalBus.Fire(new CellSpawnSignal(data));
+        }
+        
+        public class Factory : PlaceholderFactory<CellData, Cell>
+        {
+            public override Cell Create(CellData data)
             {
-                return base.Create();
+                var cell = base.Create(data);
+                cell.Prepare(data);
+                return cell;
             }
         }
     }

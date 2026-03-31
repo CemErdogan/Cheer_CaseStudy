@@ -12,12 +12,17 @@ namespace Game.GridSystem.Runtime
         
         public void Initialize()
         {
-            
+            _signalBus.Subscribe<GridSpawnSignal>(OnSpawn);
         }
 
         public void Dispose()
         {
-            
+            _signalBus.Unsubscribe<GridSpawnSignal>(OnSpawn);
+        }
+
+        private void OnSpawn(GridSpawnSignal signal)
+        {
+            _model.Prepare(signal.Data);
         }
     }
 }

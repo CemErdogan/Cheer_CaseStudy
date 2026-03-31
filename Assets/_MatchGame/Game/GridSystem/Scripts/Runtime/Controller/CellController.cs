@@ -1,5 +1,6 @@
 using System;
 using Abstractions.GridSystem;
+using Common.Util;
 using Zenject;
 
 namespace Game.GridSystem.Runtime
@@ -12,12 +13,18 @@ namespace Game.GridSystem.Runtime
         
         public void Initialize()
         {
-            
+            _signalBus.Subscribe<CellSpawnSignal>(OnSpawn);
         }
 
         public void Dispose()
         {
-            
+            _signalBus.Unsubscribe<CellSpawnSignal>(OnSpawn);
+        }
+
+        private void OnSpawn(CellSpawnSignal signal)
+        {
+            _model.Prepare(signal.Data);
+            _view.Prepare(_model.Data.Coord.ToPosition());
         }
     }
 }

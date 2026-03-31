@@ -7,16 +7,21 @@ namespace Game.FigureSystem.Runtime
     {
         [SerializeField] private MeshRenderer meshRenderer;
 
-        private static readonly MaterialPropertyBlock PropertyBlock = new ();
+        private MaterialPropertyBlock _propertyBlock;
         private static readonly int ColorID = Shader.PropertyToID("_Color");
+
+        private void Awake()
+        {
+            _propertyBlock = new MaterialPropertyBlock();
+        }
 
         public void Prepare(ColorType colorType, Vector3 localPosition)
         {
             transform.localPosition = localPosition;
             
-            meshRenderer.GetPropertyBlock(PropertyBlock);
-            PropertyBlock.SetColor(ColorID, FigureColorUtil.GetColor(colorType));
-            meshRenderer.SetPropertyBlock(PropertyBlock);
+            meshRenderer.GetPropertyBlock(_propertyBlock);
+            _propertyBlock.SetColor(ColorID, FigureColorUtil.GetColor(colorType));
+            meshRenderer.SetPropertyBlock(_propertyBlock);
         }
     }
 }

@@ -2,6 +2,6 @@ namespace Abstractions.GridSystem
 {
     public struct GridData
     {
-        ICell[,] Cells;
+        public ICell[,] Cells { get; private set; }
     }
 }
