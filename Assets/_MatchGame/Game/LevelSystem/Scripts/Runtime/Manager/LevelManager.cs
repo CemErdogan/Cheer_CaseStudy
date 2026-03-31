@@ -20,6 +20,22 @@ namespace Game.LevelSystem.Runtime
         public void Initialize()
         {
             _currentLevelIndex = _saveManager.Load<int>(SaveKeys.LevelIndex);
+#if UNITY_EDITOR
+            var testLevelName = UnityEditor.EditorPrefs.GetString("MatchGame.TestLevelName", string.Empty);
+            if (!string.IsNullOrEmpty(testLevelName))
+            {
+                UnityEditor.EditorPrefs.DeleteKey("MatchGame.TestLevelName");
+                var levels = _database.Levels;
+                for (int i = 0; i < levels.Length; i++)
+                {
+                    if (levels[i].name == testLevelName)
+                    {
+                        _currentLevelIndex = i;
+                        break;
+                    }
+                }
+            }
+#endif
             _signalBus.Subscribe<ICompleteLevelSignal>(OnLevelCompleted);
         }
 

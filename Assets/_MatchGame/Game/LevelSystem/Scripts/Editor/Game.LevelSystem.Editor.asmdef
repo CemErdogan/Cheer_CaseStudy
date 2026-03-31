@@ -1,0 +1,19 @@
+{
+    "name": "Game.LevelSystem.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:bfb7eba8eaff5408b82716d8d9d91299",
+        "GUID:f606334d27b964b60b91fdb7fc71fad9"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
