@@ -25,8 +25,7 @@ namespace Game.MatchSystem.Runtime
             return destroySet.ToList();
         }
 
-        private void CollectRegularMatches(IPoint point, IFigure ownerFigure,
-            IGridManager grid, HashSet<IPoint> destroySet)
+        private void CollectRegularMatches(IPoint point, IFigure ownerFigure, IGridManager grid, HashSet<IPoint> destroySet)
         {
             var neighbors = NeighborUtil.GetNeighborPoints(point, ownerFigure, grid);
 
@@ -48,8 +47,7 @@ namespace Game.MatchSystem.Runtime
             }
         }
 
-        private void CollectBigSquareMatches(IPoint point, IFigure ownerFigure,
-            IGridManager grid, HashSet<IPoint> destroySet)
+        private void CollectBigSquareMatches(IPoint point, IFigure ownerFigure, IGridManager grid, HashSet<IPoint> destroySet)
         {
             var neighbors = NeighborUtil.GetNeighborPoints(point, ownerFigure, grid);
 

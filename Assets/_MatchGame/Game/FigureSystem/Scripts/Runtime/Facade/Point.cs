@@ -7,16 +7,16 @@ namespace Game.FigureSystem.Runtime
 {
     public class Point : MonoBehaviour, IPoint
     {
-        [Inject] private readonly SignalBus  _signalBus;
+        [Inject] private readonly SignalBus _signalBus;
         [Inject] private readonly IPointView _view;
 
-        public SlotPosition SlotPos      { get; private set; }
-        public ColorType    Color        { get; private set; }
-        public bool         IsConnected  { get; private set; }
-        public SlotPosition ConnectedWith{ get; private set; }
-        public bool         IsBigSquare  { get; private set; }
-        public IFigure      ParentFigure { get; private set; }
-        public Transform    Transform    => transform;
+        public SlotPosition SlotPos { get; private set; }
+        public ColorType Color { get; private set; }
+        public bool IsConnected { get; private set; }
+        public SlotPosition ConnectedWith { get; private set; }
+        public bool IsBigSquare { get; private set; }
+        public IFigure ParentFigure { get; private set; }
+        public Transform Transform => transform;
 
         public void Prepare(PointData data)
         {
@@ -25,9 +25,9 @@ namespace Game.FigureSystem.Runtime
 
         public void Initialize(PointData data, IFigure parent, ConnectionData slotData)
         {
-            SlotPos      = data.Position;
-            Color        = data.Color;
-            IsBigSquare  = data.IsBigSquare;
+            SlotPos = data.Position;
+            Color = data.Color;
+            IsBigSquare = data.IsBigSquare;
             ParentFigure = parent;
 
             transform.SetParent(parent.Transform, false);

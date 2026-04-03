@@ -33,15 +33,14 @@ namespace Game.GridSystem.Runtime
             return figure;
         }
 
-        public bool IsOccupied(Vector2Int coord) =>
-            _figureGrid.TryGetValue(coord, out var fig) && fig != null;
+        public bool IsOccupied(Vector2Int coord) => _figureGrid.TryGetValue(coord, out var fig) && fig != null;
 
         public void RemoveFigure(Vector2Int coord)
         {
             _figureGrid.Remove(coord);
         }
 
-        public IEnumerable<IFigure> GetAllFigures()    => _figureGrid.Values;
+        public IEnumerable<IFigure> GetAllFigures() => _figureGrid.Values;
         public IEnumerable<Vector2Int> GetOccupiedCoords() => _figureGrid.Keys;
     }
 }

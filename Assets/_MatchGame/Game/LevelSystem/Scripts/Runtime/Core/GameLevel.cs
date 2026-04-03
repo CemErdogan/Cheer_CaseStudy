@@ -10,16 +10,15 @@ namespace Game.LevelSystem.Runtime
     [CreateAssetMenu(fileName = "Level_", menuName = "Game/LevelSystem/Level/GameLevel", order = 0)]
     public class GameLevel : ScriptableObject, ILevel
     {
-        [field: SerializeField] public GoalData[]   GoalData       { get; private set; }
-        [field: SerializeField] public Vector2Int   GridSize       { get; private set; }
+        [field: SerializeField] public GoalData[] GoalData { get; private set; }
+        [field: SerializeField] public Vector2Int GridSize { get; private set; }
         [field: SerializeField] public FigureData[] InitialFigures { get; private set; }
 
         [Inject] private IFigureFactory _figureFactory;
-        [Inject] private IGridManager   _gridManager;
+        [Inject] private IGridManager _gridManager;
 
         public void Load()
         {
-            UnityEngine.Debug.Log($"[GameLevel] Load called. factory={_figureFactory != null}, grid={_gridManager != null}, figures={InitialFigures?.Length ?? 0}");
             _gridManager.SetGridSize(GridSize.x, GridSize.y);
 
             if (InitialFigures == null) return;

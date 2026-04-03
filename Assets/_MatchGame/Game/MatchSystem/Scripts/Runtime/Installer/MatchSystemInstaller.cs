@@ -20,7 +20,6 @@ namespace Game.MatchSystem.Runtime
         }
     }
 
-    // Signals
     public readonly struct FigurePlacedSignal { }
     public readonly struct FlowCompletedSignal { }
     public readonly struct GridClearedSignal { }

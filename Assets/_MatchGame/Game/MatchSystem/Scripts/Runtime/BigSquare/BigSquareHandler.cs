@@ -20,7 +20,10 @@ namespace Game.MatchSystem.Runtime
             ColorType? firstColor = null;
             foreach (var point in figure.PointMap.Values)
             {
-                if (firstColor == null) { firstColor = point.Color; continue; }
+                if (firstColor == null)
+                {
+                    firstColor = point.Color; continue;
+                }
                 if (point.Color != firstColor) return;
             }
 
@@ -30,10 +33,7 @@ namespace Game.MatchSystem.Runtime
             {
                 if (figure.TryGetPoint(slot, out _)) continue;
 
-                var newPointData = new PointData(
-                    position:    slot,
-                    color:       firstColor.Value,
-                    isBigSquare: true);
+                var newPointData = new PointData(position:slot, color: firstColor.Value, isBigSquare: true);
 
                 var slotData = connDb.GetData(slot);
                 var newPoint = pointFactory.Create(newPointData);

@@ -7,13 +7,13 @@ namespace Abstractions.FigureSystem
     {
         void Prepare(PointData data);
 
-        SlotPosition SlotPos      { get; }
-        ColorType    Color        { get; }
-        bool         IsConnected  { get; }
-        SlotPosition ConnectedWith{ get; }
-        bool         IsBigSquare  { get; }
-        IFigure      ParentFigure { get; }
-        Transform    Transform    { get; }
+        SlotPosition SlotPos { get; }
+        ColorType Color { get; }
+        bool IsConnected { get; }
+        SlotPosition ConnectedWith { get; }
+        bool IsBigSquare { get; }
+        IFigure ParentFigure { get; }
+        Transform Transform { get; }
 
         void Initialize(PointData data, IFigure parent, ConnectionData slotData);
         void SetConnection(SlotPosition targetSlot, ConnectionData mySlotData);

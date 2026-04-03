@@ -15,7 +15,9 @@ namespace Game.MatchSystem.Runtime
         {
             var tasks = new List<UniTask>();
             for (int col = 0; col < grid.ColumnCount; col++)
+            {
                 tasks.Add(ProcessColumn(grid, col));
+            }
             await UniTask.WhenAll(tasks);
         }
 

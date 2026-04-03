@@ -7,16 +7,16 @@ namespace Game.FigureSystem.Runtime
 {
     public class Figure : MonoBehaviour, IFigure
     {
-        [Inject] private readonly SignalBus          _signalBus;
-        [Inject] private readonly Point.Factory      _pointFactory;
+        [Inject] private readonly SignalBus _signalBus;
+        [Inject] private readonly Point.Factory _pointFactory;
         [Inject] private readonly ConnectionDatabase _connectionDb;
 
         private readonly Dictionary<SlotPosition, IPoint> _pointMap = new();
 
         public IReadOnlyDictionary<SlotPosition, IPoint> PointMap => _pointMap;
-        public Vector2Int GridCoord  { get; set; }
-        public bool       IsBigSquare{ get; private set; }
-        public Transform  Transform  => transform;
+        public Vector2Int GridCoord { get; set; }
+        public bool       IsBigSquare { get; private set; }
+        public Transform  Transform => transform;
         public GameObject GameObject => gameObject;
 
         public void Prepare(FigureData data)
@@ -37,8 +37,7 @@ namespace Game.FigureSystem.Runtime
             _signalBus.Fire(new FigureSpawnSignal(data));
         }
 
-        public bool TryGetPoint(SlotPosition slot, out IPoint point) =>
-            _pointMap.TryGetValue(slot, out point);
+        public bool TryGetPoint(SlotPosition slot, out IPoint point) => _pointMap.TryGetValue(slot, out point);
 
         public void AddPoint(SlotPosition slot, IPoint point)
         {
@@ -47,8 +46,7 @@ namespace Game.FigureSystem.Runtime
 
         public void RemovePoint(SlotPosition slot)
         {
-            if (!_pointMap.TryGetValue(slot, out var point)) return;
-            _pointMap.Remove(slot);
+            if (!_pointMap.Remove(slot, out var point)) return;
             if (point is Component comp && comp != null)
                 Destroy(comp.gameObject);
         }
@@ -59,7 +57,9 @@ namespace Game.FigureSystem.Runtime
         {
             IsBigSquare = true;
             foreach (var point in _pointMap.Values)
+            {
                 point.SetBigSquare();
+            }
             transform.localScale = new Vector3(1.2f, 1.2f, 1f);
         }
 

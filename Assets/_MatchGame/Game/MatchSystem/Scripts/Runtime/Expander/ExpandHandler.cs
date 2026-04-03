@@ -16,18 +16,18 @@ namespace Game.MatchSystem.Runtime
 
         private static readonly Dictionary<SlotPosition, SlotPosition> VerticalPartner = new()
         {
-            { SlotPosition.TopLeft,     SlotPosition.BottomLeft  },
-            { SlotPosition.BottomLeft,  SlotPosition.TopLeft     },
-            { SlotPosition.TopRight,    SlotPosition.BottomRight },
-            { SlotPosition.BottomRight, SlotPosition.TopRight    },
+            { SlotPosition.TopLeft, SlotPosition.BottomLeft },
+            { SlotPosition.BottomLeft, SlotPosition.TopLeft },
+            { SlotPosition.TopRight, SlotPosition.BottomRight },
+            { SlotPosition.BottomRight, SlotPosition.TopRight },
         };
 
         private static readonly Dictionary<SlotPosition, SlotPosition> HorizontalPartner = new()
         {
-            { SlotPosition.TopLeft,     SlotPosition.TopRight    },
-            { SlotPosition.TopRight,    SlotPosition.TopLeft     },
-            { SlotPosition.BottomLeft,  SlotPosition.BottomRight },
-            { SlotPosition.BottomRight, SlotPosition.BottomLeft  },
+            { SlotPosition.TopLeft, SlotPosition.TopRight },
+            { SlotPosition.TopRight, SlotPosition.TopLeft },
+            { SlotPosition.BottomLeft, SlotPosition.BottomRight },
+            { SlotPosition.BottomRight, SlotPosition.BottomLeft },
         };
 
         public void CheckExpand(IFigure figure, Point.Factory pointFactory, ConnectionDatabase connDb)
@@ -41,20 +41,17 @@ namespace Game.MatchSystem.Runtime
             }
         }
 
-        private bool TryExpandVertically(IFigure figure, SlotPosition emptySlot,
-            Point.Factory pointFactory, ConnectionDatabase connDb)
+        private bool TryExpandVertically(IFigure figure, SlotPosition emptySlot, Point.Factory pointFactory, ConnectionDatabase connDb)
         {
             return TryCloneAndConnect(figure, emptySlot, VerticalPartner[emptySlot], pointFactory, connDb);
         }
 
-        private bool TryExpandHorizontally(IFigure figure, SlotPosition emptySlot,
-            Point.Factory pointFactory, ConnectionDatabase connDb)
+        private bool TryExpandHorizontally(IFigure figure, SlotPosition emptySlot, Point.Factory pointFactory, ConnectionDatabase connDb)
         {
             return TryCloneAndConnect(figure, emptySlot, HorizontalPartner[emptySlot], pointFactory, connDb);
         }
 
-        private bool TryCloneAndConnect(IFigure figure, SlotPosition targetSlot, SlotPosition sourceSlot,
-            Point.Factory pointFactory, ConnectionDatabase connDb)
+        private bool TryCloneAndConnect(IFigure figure, SlotPosition targetSlot, SlotPosition sourceSlot, Point.Factory pointFactory, ConnectionDatabase connDb)
         {
             if (!figure.TryGetPoint(sourceSlot, out var sourcePoint)) return false;
             if (sourcePoint.IsConnected) return false;

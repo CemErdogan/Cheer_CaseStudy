@@ -7,10 +7,6 @@ namespace Game.MatchSystem.Runtime
 {
     public static class NeighborUtil
     {
-        /// <summary>
-        /// Returns the exact grid-adjacent neighbor Points for a given Point.
-        /// Diagonal cells are NOT neighbors — only shared-edge Points count.
-        /// </summary>
         public static List<IPoint> GetNeighborPoints(IPoint point, IFigure ownerFigure, IGridManager grid)
         {
             var neighbors = new List<IPoint>();

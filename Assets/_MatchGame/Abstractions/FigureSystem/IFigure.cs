@@ -5,14 +5,13 @@ namespace Abstractions.FigureSystem
 {
     public interface IFigure
     {
-        void Prepare(FigureData data);
-
-        Vector2Int                             GridCoord  { get; set; }
-        bool                                   IsBigSquare{ get; }
+        Vector2Int GridCoord  { get; set; }
+        bool IsBigSquare{ get; }
         IReadOnlyDictionary<SlotPosition, IPoint> PointMap{ get; }
-        Transform Transform                               { get; }
-        GameObject GameObject                             { get; }
+        Transform Transform { get; }
+        GameObject GameObject { get; }
 
+        void Prepare(FigureData data);
         bool  TryGetPoint(SlotPosition slot, out IPoint point);
         void  AddPoint(SlotPosition slot, IPoint point);
         void  RemovePoint(SlotPosition slot);

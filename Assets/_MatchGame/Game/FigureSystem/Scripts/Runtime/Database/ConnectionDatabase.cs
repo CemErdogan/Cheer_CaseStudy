@@ -15,11 +15,11 @@ namespace Game.FigureSystem.Runtime
         {
             return slot switch
             {
-                SlotPosition.TopLeft     => topLeft,
-                SlotPosition.TopRight    => topRight,
-                SlotPosition.BottomLeft  => bottomLeft,
+                SlotPosition.TopLeft => topLeft,
+                SlotPosition.TopRight => topRight,
+                SlotPosition.BottomLeft => bottomLeft,
                 SlotPosition.BottomRight => bottomRight,
-                _                        => default
+                _ => default
             };
         }
     }

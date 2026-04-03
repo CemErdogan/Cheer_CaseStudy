@@ -7,17 +7,16 @@ namespace Game.FigureSystem.Editor
 {
     public class FigureWindow : EditorWindow
     {
-        private string           _propertyPath;
+        private string _propertyPath;
         private SerializedObject _so;
 
         private static readonly SlotPosition[] Slots =
         {
-            SlotPosition.TopLeft,  SlotPosition.TopRight,
+            SlotPosition.TopLeft, SlotPosition.TopRight,
             SlotPosition.BottomLeft, SlotPosition.BottomRight
         };
 
-        private static readonly string[] SlotLabels =
-            { "TL", "TR", "BL", "BR" };
+        private static readonly string[] SlotLabels = { "TL", "TR", "BL", "BR" };
 
         private const int CellSize = 48;
         private const int CellPad  = 6;
@@ -26,8 +25,8 @@ namespace Game.FigureSystem.Editor
         {
             var win = GetWindow<FigureWindow>("Figure Editor");
             win._propertyPath = property.propertyPath;
-            win._so           = property.serializedObject;
-            win.minSize       = new Vector2(340, 420);
+            win._so = property.serializedObject;
+            win.minSize = new Vector2(340, 420);
             win.Show();
         }
 
@@ -51,13 +50,11 @@ namespace Game.FigureSystem.Editor
             var isSquareProp  = figureProp.FindPropertyRelative("<IsSquare>k__BackingField");
             var pointsProp    = figureProp.FindPropertyRelative("<Points>k__BackingField");
 
-            // --- Header fields ---
             EditorGUILayout.Space(6);
             EditorGUILayout.PropertyField(gridCoordProp, new GUIContent("Grid Coord"));
             isSquareProp.boolValue = EditorGUILayout.Toggle("Is Square", isSquareProp.boolValue);
             EditorGUILayout.Space(10);
 
-            // --- 2×2 Slot Grid ---
             EditorGUILayout.LabelField("Slots  (left-click: toggle | right-click: color)", EditorStyles.miniLabel);
             EditorGUILayout.Space(4);
 
@@ -88,13 +85,11 @@ namespace Game.FigureSystem.Editor
 
                     EditorGUI.DrawRect(cellRect, bgColor);
 
-                    // Slot label
                     GUI.Label(cellRect, SlotLabels[row * 2 + col],
                         new GUIStyle(EditorStyles.boldLabel)
                         { alignment = TextAnchor.UpperLeft, fontSize = 9,
                           normal = { textColor = Color.white } });
 
-                    // Connected indicator
                     if (active && pointsProp.GetArrayElementAtIndex(idx)
                             .FindPropertyRelative("<IsConnected>k__BackingField").boolValue)
                     {
@@ -107,7 +102,6 @@ namespace Game.FigureSystem.Editor
                     DrawBorder(cellRect);
                     GUILayout.Space(CellPad);
 
-                    // Input handling
                     if (e.type == EventType.MouseDown && cellRect.Contains(e.mousePosition))
                     {
                         if (e.button == 0) { ToggleSlot(pointsProp, slot); e.Use(); }
@@ -119,7 +113,6 @@ namespace Game.FigureSystem.Editor
                 GUILayout.Space(CellPad);
             }
 
-            // --- Connection editor for active slots ---
             EditorGUILayout.Space(10);
             EditorGUILayout.LabelField("Connections", EditorStyles.boldLabel);
             EditorGUILayout.Space(2);
@@ -162,14 +155,14 @@ namespace Game.FigureSystem.Editor
 
             if (idx >= 0)
             {
-                // Remove — shift array
                 for (int i = idx; i < pointsProp.arraySize - 1; i++)
+                {
                     pointsProp.MoveArrayElement(i + 1, i);
+                }
                 pointsProp.arraySize--;
             }
             else
             {
-                // Add new slot
                 pointsProp.arraySize++;
                 var newElem = pointsProp.GetArrayElementAtIndex(pointsProp.arraySize - 1);
                 newElem.FindPropertyRelative("<Position>k__BackingField").intValue      = (int)slot;
