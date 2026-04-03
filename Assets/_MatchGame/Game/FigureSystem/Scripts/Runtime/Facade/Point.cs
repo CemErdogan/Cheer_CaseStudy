@@ -30,7 +30,8 @@ namespace Game.FigureSystem.Runtime
             IsBigSquare = data.IsBigSquare;
             ParentFigure = parent;
 
-            transform.SetParent(parent.Transform, false);
+            if (parent != null)
+                transform.SetParent(parent.Transform, false);
 
             if (data.IsConnected)
             {

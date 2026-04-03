@@ -1,3 +1,4 @@
+using Abstractions.MatchSystem;
 using Zenject;
 
 namespace Game.MatchSystem.Runtime
@@ -19,8 +20,4 @@ namespace Game.MatchSystem.Runtime
             Container.BindInterfacesAndSelfTo<FlowManager>().FromNew().AsSingle().NonLazy();
         }
     }
-
-    public readonly struct FigurePlacedSignal { }
-    public readonly struct FlowCompletedSignal { }
-    public readonly struct GridClearedSignal { }
 }

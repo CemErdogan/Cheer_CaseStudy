@@ -43,7 +43,7 @@ namespace Game.LevelSystem.Runtime
 
         public void Dispose()
         {
-            _signalBus.Unsubscribe<ICompleteLevelSignal>(OnLevelCompleted);
+            _signalBus.TryUnsubscribe<ICompleteLevelSignal>(OnLevelCompleted);
         }
         
         public void LoadLevel()

@@ -7,10 +7,12 @@ namespace Game.FigureSystem.Runtime
     public class FigureSystemInstaller : MonoInstaller<FigureSystemInstaller>
     {
         [SerializeField] private FigureDatabase database;
+        [SerializeField] private ConnectionDatabase connectionDatabase;
         
         public override void InstallBindings()
         {
-            Container.BindInstance(database.ConnectionDatabase).AsSingle();
+            Container.Bind<FigureDatabase>().FromInstance(database).AsSingle();
+            Container.Bind<ConnectionDatabase>().FromInstance(connectionDatabase).AsSingle();
 
             Container.BindFactory<FigureData, Figure, Figure.Factory>()
                 .FromSubContainerResolve()
