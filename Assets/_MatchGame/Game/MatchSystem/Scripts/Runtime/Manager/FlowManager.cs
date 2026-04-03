@@ -37,6 +37,8 @@ namespace Game.MatchSystem.Runtime
 
         private async UniTask StartFlow()
         {
+            await _gravityHandler.ApplyGravity(_gridManager);
+
             bool hadMatches;
 
             do

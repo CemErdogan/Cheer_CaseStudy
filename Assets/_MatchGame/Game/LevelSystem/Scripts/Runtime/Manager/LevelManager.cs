@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Abstractions.LevelSystem;
+using Abstractions.MatchSystem;
 using Abstractions.SaveSystem;
 using Zenject;
 
@@ -57,6 +58,7 @@ namespace Game.LevelSystem.Runtime
             _currentLevel?.Unload();
             _currentLevel = level;
             _currentLevel.Load();
+            _signalBus.Fire(new FigurePlacedSignal());
         }
 
         private ILevel GetCurrentLevel()

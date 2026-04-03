@@ -31,7 +31,7 @@ namespace Game.MatchSystem.Runtime
                 for (int aboveRow = row + 1; aboveRow < grid.RowCount; aboveRow++)
                 {
                     var aboveCoord = new Vector2Int(col, aboveRow);
-                    var figure     = grid.GetFigureAt(aboveCoord);
+                    var figure = grid.GetFigureAt(aboveCoord);
                     if (figure == null) continue;
 
                     grid.RemoveFigure(aboveCoord);
