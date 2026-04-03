@@ -37,6 +37,8 @@ namespace Game.LevelSystem.Runtime
             }
 #endif
             _signalBus.Subscribe<ICompleteLevelSignal>(OnLevelCompleted);
+
+            LoadLevel();
         }
 
         public void Dispose()
@@ -44,7 +46,11 @@ namespace Game.LevelSystem.Runtime
             _signalBus.Unsubscribe<ICompleteLevelSignal>(OnLevelCompleted);
         }
         
-        public void LoadLevel() => UnloadAndLoadLevel(GetCurrentLevel());
+        public void LoadLevel()
+        {
+            UnityEngine.Debug.Log($"[LevelManager] LoadLevel called. Index: {_currentLevelIndex}");
+            UnloadAndLoadLevel(GetCurrentLevel());
+        }
 
         private void UnloadAndLoadLevel(ILevel level)
         {

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f043dc29774541cc8451a8bc4b6033b, type: 3}
+  m_Name: ConnectionDatabase
+  m_EditorClassIdentifier: 
+  topLeft:
+    <LocalPosition>k__BackingField: {x: -0.25, y: 0.25, z: 0}
+    <LocalScale>k__BackingField: {x: 0.4, y: 0.4, z: 1}
+    <PositionOffset>k__BackingField: {x: 0.05, y: -0.05, z: 0}
+    <ScaleAdjustment>k__BackingField: {x: 0.3, y: 0.3, z: 1}
+  topRight:
+    <LocalPosition>k__BackingField: {x: 0.25, y: 0.25, z: 0}
+    <LocalScale>k__BackingField: {x: 0.4, y: 0.4, z: 1}
+    <PositionOffset>k__BackingField: {x: -0.05, y: -0.05, z: 0}
+    <ScaleAdjustment>k__BackingField: {x: 0.3, y: 0.3, z: 1}
+  bottomLeft:
+    <LocalPosition>k__BackingField: {x: -0.25, y: -0.25, z: 0}
+    <LocalScale>k__BackingField: {x: 0.4, y: 0.4, z: 1}
+    <PositionOffset>k__BackingField: {x: 0.05, y: 0.05, z: 0}
+    <ScaleAdjustment>k__BackingField: {x: 0.3, y: 0.3, z: 1}
+  bottomRight:
+    <LocalPosition>k__BackingField: {x: 0.25, y: -0.25, z: 0}
+    <LocalScale>k__BackingField: {x: 0.4, y: 0.4, z: 1}
+    <PositionOffset>k__BackingField: {x: -0.05, y: 0.05, z: 0}
+    <ScaleAdjustment>k__BackingField: {x: 0.3, y: 0.3, z: 1}

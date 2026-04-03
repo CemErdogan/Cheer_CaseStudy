@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Abstractions.FigureSystem;
 using Game.FigureSystem.Runtime;
 using UnityEditor;
@@ -8,27 +7,28 @@ namespace Game.FigureSystem.Editor
 {
     public class FigureWindow : EditorWindow
     {
-        private string _propertyPath;
+        private string           _propertyPath;
         private SerializedObject _so;
-        private int _width;
-        private int _height;
-        private Vector2 _scrollPos;
 
-        private const int CellSize = 40;
-        private const int CellPad = 3;
+        private static readonly SlotPosition[] Slots =
+        {
+            SlotPosition.TopLeft,  SlotPosition.TopRight,
+            SlotPosition.BottomLeft, SlotPosition.BottomRight
+        };
+
+        private static readonly string[] SlotLabels =
+            { "TL", "TR", "BL", "BR" };
+
+        private const int CellSize = 48;
+        private const int CellPad  = 6;
 
         public static void Open(SerializedProperty property)
         {
-            var window = GetWindow<FigureWindow>("Figure Editor");
-            window._propertyPath = property.propertyPath;
-            window._so = property.serializedObject;
-
-            var sizeProp = property.FindPropertyRelative("<Size>k__BackingField");
-            window._width = Mathf.Max(1, Mathf.RoundToInt(sizeProp.vector2Value.x));
-            window._height = Mathf.Max(1, Mathf.RoundToInt(sizeProp.vector2Value.y));
-
-            window.minSize = new Vector2(300, 200);
-            window.Show();
+            var win = GetWindow<FigureWindow>("Figure Editor");
+            win._propertyPath = property.propertyPath;
+            win._so           = property.serializedObject;
+            win.minSize       = new Vector2(340, 420);
+            win.Show();
         }
 
         private void OnGUI()
@@ -41,191 +41,178 @@ namespace Game.FigureSystem.Editor
 
             _so.Update();
             var figureProp = _so.FindProperty(_propertyPath);
-
             if (figureProp == null)
             {
-                EditorGUILayout.LabelField("Property is no longer valid. Please reopen the editor.");
+                EditorGUILayout.LabelField("Property is no longer valid. Please reopen.");
                 return;
             }
 
-            DrawSizeControls(figureProp);
-            EditorGUILayout.Space(8);
-            DrawGrid(figureProp);
+            var gridCoordProp = figureProp.FindPropertyRelative("<GridCoord>k__BackingField");
+            var isSquareProp  = figureProp.FindPropertyRelative("<IsSquare>k__BackingField");
+            var pointsProp    = figureProp.FindPropertyRelative("<Points>k__BackingField");
 
-            _so.ApplyModifiedProperties();
-        }
+            // --- Header fields ---
+            EditorGUILayout.Space(6);
+            EditorGUILayout.PropertyField(gridCoordProp, new GUIContent("Grid Coord"));
+            isSquareProp.boolValue = EditorGUILayout.Toggle("Is Square", isSquareProp.boolValue);
+            EditorGUILayout.Space(10);
 
-        private void DrawSizeControls(SerializedProperty figureProp)
-        {
-            EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("Width", GUILayout.Width(45));
-            var newWidth = EditorGUILayout.IntField(_width, GUILayout.Width(45));
-            GUILayout.Space(16);
-            EditorGUILayout.LabelField("Height", GUILayout.Width(45));
-            var newHeight = EditorGUILayout.IntField(_height, GUILayout.Width(45));
-            EditorGUILayout.EndHorizontal();
+            // --- 2×2 Slot Grid ---
+            EditorGUILayout.LabelField("Slots  (left-click: toggle | right-click: color)", EditorStyles.miniLabel);
+            EditorGUILayout.Space(4);
 
-            newWidth = Mathf.Clamp(newWidth, 1, 20);
-            newHeight = Mathf.Clamp(newHeight, 1, 20);
-
-            if (newWidth == _width && newHeight == _height) return;
-            
-            _width = newWidth;
-            _height = newHeight;
-            RegeneratePoints(figureProp, _width, _height);
-        }
-
-        private void DrawGrid(SerializedProperty figureProp)
-        {
-            var pointsProp = figureProp.FindPropertyRelative("<Points>k__BackingField");
             var e = Event.current;
 
-            float totalW = _width * (CellSize + CellPad);
-            float totalH = _height * (CellSize + CellPad);
-            _scrollPos = EditorGUILayout.BeginScrollView(_scrollPos, GUILayout.Width(totalW + 20), GUILayout.Height(totalH + 20));
-
-            for (int row = 0; row < _height; row++)
+            for (int row = 0; row < 2; row++)
             {
                 EditorGUILayout.BeginHorizontal();
-                for (int col = 0; col < _width; col++)
-                {
-                    var pointIdx = FindPointIndex(pointsProp, col, row);
-                    var colorInt = 0;
+                GUILayout.Space(8);
 
-                    if (pointIdx >= 0)
+                for (int col = 0; col < 2; col++)
+                {
+                    var slot = Slots[row * 2 + col];
+                    var idx  = FigureDrawer.FindSlotIndex(pointsProp, slot);
+                    bool active = idx >= 0;
+
+                    var bgColor = active
+                        ? FigureColorUtil.GetColor((ColorType)pointsProp
+                            .GetArrayElementAtIndex(idx)
+                            .FindPropertyRelative("<Color>k__BackingField").intValue)
+                        : new Color(0.18f, 0.18f, 0.18f);
+
+                    var savedBg = GUI.backgroundColor;
+                    GUI.backgroundColor = bgColor;
+                    var cellRect = GUILayoutUtility.GetRect(CellSize, CellSize,
+                        GUILayout.Width(CellSize), GUILayout.Height(CellSize));
+                    GUI.backgroundColor = savedBg;
+
+                    EditorGUI.DrawRect(cellRect, bgColor);
+
+                    // Slot label
+                    GUI.Label(cellRect, SlotLabels[row * 2 + col],
+                        new GUIStyle(EditorStyles.boldLabel)
+                        { alignment = TextAnchor.UpperLeft, fontSize = 9,
+                          normal = { textColor = Color.white } });
+
+                    // Connected indicator
+                    if (active && pointsProp.GetArrayElementAtIndex(idx)
+                            .FindPropertyRelative("<IsConnected>k__BackingField").boolValue)
                     {
-                        var point = pointsProp.GetArrayElementAtIndex(pointIdx);
-                        colorInt = point.FindPropertyRelative("<ColorType>k__BackingField").intValue;
+                        GUI.Label(cellRect, "⚡",
+                            new GUIStyle(EditorStyles.label)
+                            { alignment = TextAnchor.LowerRight, fontSize = 11,
+                              normal = { textColor = Color.yellow } });
                     }
 
-                    var cellColor = FigureColorUtil.GetColor((ColorType)colorInt);
-                    var cellRect = GUILayoutUtility.GetRect(CellSize, CellSize, GUILayout.Width(CellSize), GUILayout.Height(CellSize));
-
-                    EditorGUI.DrawRect(cellRect, cellColor);
                     DrawBorder(cellRect);
+                    GUILayout.Space(CellPad);
 
+                    // Input handling
                     if (e.type == EventType.MouseDown && cellRect.Contains(e.mousePosition))
                     {
-                        if (e.button == 0)
-                        {
-                            ToggleActive(pointsProp, col, row);
-                            e.Use();
-                        }
-                        else if (e.button == 1)
-                        {
-                            ShowColorMenu(pointsProp, col, row);
-                            e.Use();
-                        }
+                        if (e.button == 0) { ToggleSlot(pointsProp, slot); e.Use(); }
+                        else if (e.button == 1 && active) { ShowColorMenu(pointsProp, slot); e.Use(); }
                     }
                 }
+
+                EditorGUILayout.EndHorizontal();
+                GUILayout.Space(CellPad);
+            }
+
+            // --- Connection editor for active slots ---
+            EditorGUILayout.Space(10);
+            EditorGUILayout.LabelField("Connections", EditorStyles.boldLabel);
+            EditorGUILayout.Space(2);
+
+            foreach (var slot in Slots)
+            {
+                var idx = FigureDrawer.FindSlotIndex(pointsProp, slot);
+                if (idx < 0) continue;
+
+                var pointProp       = pointsProp.GetArrayElementAtIndex(idx);
+                var isConnectedProp = pointProp.FindPropertyRelative("<IsConnected>k__BackingField");
+                var connWithProp    = pointProp.FindPropertyRelative("<ConnectedWith>k__BackingField");
+                var isBigSqProp     = pointProp.FindPropertyRelative("<IsBigSquare>k__BackingField");
+
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.LabelField(slot.ToString(), GUILayout.Width(90));
+                isConnectedProp.boolValue = EditorGUILayout.Toggle(isConnectedProp.boolValue, GUILayout.Width(20));
+
+                if (isConnectedProp.boolValue)
+                {
+                    connWithProp.intValue = (int)(SlotPosition)EditorGUILayout.EnumPopup(
+                        (SlotPosition)connWithProp.intValue, GUILayout.Width(100));
+                }
+                else
+                {
+                    EditorGUILayout.LabelField("", GUILayout.Width(100));
+                }
+
+                isBigSqProp.boolValue = EditorGUILayout.ToggleLeft("BigSq", isBigSqProp.boolValue, GUILayout.Width(70));
                 EditorGUILayout.EndHorizontal();
             }
 
-            EditorGUILayout.EndScrollView();
+            _so.ApplyModifiedProperties();
         }
 
-        private void ShowColorMenu(SerializedProperty pointsProp, int col, int row)
+        private void ToggleSlot(SerializedProperty pointsProp, SlotPosition slot)
+        {
+            _so.Update();
+            var idx = FigureDrawer.FindSlotIndex(pointsProp, slot);
+
+            if (idx >= 0)
+            {
+                // Remove — shift array
+                for (int i = idx; i < pointsProp.arraySize - 1; i++)
+                    pointsProp.MoveArrayElement(i + 1, i);
+                pointsProp.arraySize--;
+            }
+            else
+            {
+                // Add new slot
+                pointsProp.arraySize++;
+                var newElem = pointsProp.GetArrayElementAtIndex(pointsProp.arraySize - 1);
+                newElem.FindPropertyRelative("<Position>k__BackingField").intValue      = (int)slot;
+                newElem.FindPropertyRelative("<Color>k__BackingField").intValue         = 0;
+                newElem.FindPropertyRelative("<IsConnected>k__BackingField").boolValue  = false;
+                newElem.FindPropertyRelative("<ConnectedWith>k__BackingField").intValue = 0;
+                newElem.FindPropertyRelative("<IsBigSquare>k__BackingField").boolValue  = false;
+            }
+
+            _so.ApplyModifiedProperties();
+            Repaint();
+        }
+
+        private void ShowColorMenu(SerializedProperty pointsProp, SlotPosition slot)
         {
             var menu = new GenericMenu();
-            menu.AddItem(new GUIContent("None"),   false, () => SetColor(pointsProp, col, row, 0));
-            menu.AddItem(new GUIContent("Red"),    false, () => SetColor(pointsProp, col, row, 1));
-            menu.AddItem(new GUIContent("Green"),  false, () => SetColor(pointsProp, col, row, 2));
-            menu.AddItem(new GUIContent("Blue"),   false, () => SetColor(pointsProp, col, row, 3));
-            menu.AddItem(new GUIContent("Yellow"), false, () => SetColor(pointsProp, col, row, 4));
+            foreach (ColorType ct in System.Enum.GetValues(typeof(ColorType)))
+            {
+                var captured = ct;
+                menu.AddItem(new GUIContent(ct.ToString()), false,
+                    () => SetColor(pointsProp, slot, (int)captured));
+            }
             menu.ShowAsContext();
         }
 
-        private void ToggleActive(SerializedProperty pointsProp, int col, int row)
+        private void SetColor(SerializedProperty pointsProp, SlotPosition slot, int colorInt)
         {
             _so.Update();
-            var idx = FindPointIndex(pointsProp, col, row);
+            var idx = FigureDrawer.FindSlotIndex(pointsProp, slot);
             if (idx < 0) return;
-            var activeProp = pointsProp.GetArrayElementAtIndex(idx).FindPropertyRelative("<IsActive>k__BackingField");
-            activeProp.boolValue = !activeProp.boolValue;
+            pointsProp.GetArrayElementAtIndex(idx)
+                .FindPropertyRelative("<Color>k__BackingField").intValue = colorInt;
             _so.ApplyModifiedProperties();
             Repaint();
         }
 
-        private void SetColor(SerializedProperty pointsProp, int col, int row, int colorIntValue)
+        private static void DrawBorder(Rect r)
         {
-            _so.Update();
-            var idx = FindPointIndex(pointsProp, col, row);
-            if (idx < 0) return;
-            var colorProp = pointsProp.GetArrayElementAtIndex(idx).FindPropertyRelative("<ColorType>k__BackingField");
-            colorProp.intValue = colorIntValue;
-            _so.ApplyModifiedProperties();
-            Repaint();
-        }
-
-        private void RegeneratePoints(SerializedProperty figureProp, int newWidth, int newHeight)
-        {
-            _so.Update();
-
-            var sizeProp = figureProp.FindPropertyRelative("<Size>k__BackingField");
-            var pointsProp = figureProp.FindPropertyRelative("<Points>k__BackingField");
-
-            var existing = new Dictionary<(int, int), (bool isActive, int color)>();
-            for (int i = 0; i < pointsProp.arraySize; i++)
-            {
-                var elem = pointsProp.GetArrayElementAtIndex(i);
-                var coord = elem.FindPropertyRelative("<Coord>k__BackingField");
-                var isActive = elem.FindPropertyRelative("<IsActive>k__BackingField").boolValue;
-                var colorInt = elem.FindPropertyRelative("<ColorType>k__BackingField").intValue;
-                existing[(coord.vector2IntValue.x, coord.vector2IntValue.y)] = (isActive, colorInt);
-            }
-
-            pointsProp.arraySize = newWidth * newHeight;
-
-            int index = 0;
-            for (int row = 0; row < newHeight; row++)
-            {
-                for (int col = 0; col < newWidth; col++)
-                {
-                    var elem = pointsProp.GetArrayElementAtIndex(index);
-                    var coordProp = elem.FindPropertyRelative("<Coord>k__BackingField");
-                    var activeProp = elem.FindPropertyRelative("<IsActive>k__BackingField");
-                    var colorProp = elem.FindPropertyRelative("<ColorType>k__BackingField");
-
-                    coordProp.vector2IntValue = new Vector2Int(col, row);
-
-                    if (existing.TryGetValue((col, row), out var saved))
-                    {
-                        activeProp.boolValue = saved.isActive;
-                        colorProp.intValue = saved.color;
-                    }
-                    else
-                    {
-                        activeProp.boolValue = false;
-                        colorProp.intValue = 0;
-                    }
-
-                    index++;
-                }
-            }
-
-            sizeProp.vector2Value = new Vector2(newWidth, newHeight);
-            _so.ApplyModifiedProperties();
-            Repaint();
-        }
-
-        private static int FindPointIndex(SerializedProperty pointsProp, int col, int row)
-        {
-            for (int i = 0; i < pointsProp.arraySize; i++)
-            {
-                var coord = pointsProp.GetArrayElementAtIndex(i).FindPropertyRelative("<Coord>k__BackingField");
-                if (coord.vector2IntValue.x == col && coord.vector2IntValue.y == row)
-                    return i;
-            }
-            return -1;
-        }
-
-        private static void DrawBorder(Rect rect)
-        {
-            var c = new Color(0.08f, 0.08f, 0.08f, 0.9f);
-            EditorGUI.DrawRect(new Rect(rect.x, rect.y, rect.width, 1), c);
-            EditorGUI.DrawRect(new Rect(rect.x, rect.yMax - 1, rect.width, 1), c);
-            EditorGUI.DrawRect(new Rect(rect.x, rect.y, 1, rect.height), c);
-            EditorGUI.DrawRect(new Rect(rect.xMax - 1, rect.y, 1, rect.height), c);
+            var c = new Color(0.05f, 0.05f, 0.05f, 0.9f);
+            EditorGUI.DrawRect(new Rect(r.x,        r.y,        r.width, 1),        c);
+            EditorGUI.DrawRect(new Rect(r.x,        r.yMax - 1, r.width, 1),        c);
+            EditorGUI.DrawRect(new Rect(r.x,        r.y,        1,       r.height), c);
+            EditorGUI.DrawRect(new Rect(r.xMax - 1, r.y,        1,       r.height), c);
         }
     }
 }

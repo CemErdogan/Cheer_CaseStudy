@@ -18,210 +18,75 @@ MonoBehaviour:
     type: 3}
   <PointPrefab>k__BackingField: {fileID: 9222899958985884384, guid: 0316b2de629454508b044e0fb1cec099,
     type: 3}
+  <ConnectionDatabase>k__BackingField: {fileID: 11400000, guid: 57a8e954f7661469caca098f0b9b78a0,
+    type: 2}
   <FiguresData>k__BackingField:
-  - <Size>k__BackingField: {x: 2, y: 2}
+  - <GridCoord>k__BackingField: {x: 4, y: 4}
+    <IsSquare>k__BackingField: 0
     <Points>k__BackingField:
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 0, y: 0}
-      <ColorType>k__BackingField: 1
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 1, y: 0}
-      <ColorType>k__BackingField: 1
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 0, y: 1}
-      <ColorType>k__BackingField: 1
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 1, y: 1}
-      <ColorType>k__BackingField: 1
-  - <Size>k__BackingField: {x: 2, y: 2}
+    - <Position>k__BackingField: 1
+      <Color>k__BackingField: 1
+      <IsConnected>k__BackingField: 0
+      <ConnectedWith>k__BackingField: 0
+      <IsBigSquare>k__BackingField: 0
+    - <Position>k__BackingField: 0
+      <Color>k__BackingField: 2
+      <IsConnected>k__BackingField: 0
+      <ConnectedWith>k__BackingField: 0
+      <IsBigSquare>k__BackingField: 0
+    - <Position>k__BackingField: 2
+      <Color>k__BackingField: 3
+      <IsConnected>k__BackingField: 0
+      <ConnectedWith>k__BackingField: 0
+      <IsBigSquare>k__BackingField: 0
+    - <Position>k__BackingField: 3
+      <Color>k__BackingField: 4
+      <IsConnected>k__BackingField: 0
+      <ConnectedWith>k__BackingField: 0
+      <IsBigSquare>k__BackingField: 0
+  - <GridCoord>k__BackingField: {x: 4, y: 4}
+    <IsSquare>k__BackingField: 0
     <Points>k__BackingField:
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 0, y: 0}
-      <ColorType>k__BackingField: 2
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 1, y: 0}
-      <ColorType>k__BackingField: 2
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 0, y: 1}
-      <ColorType>k__BackingField: 2
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 1, y: 1}
-      <ColorType>k__BackingField: 2
-  - <Size>k__BackingField: {x: 2, y: 2}
+    - <Position>k__BackingField: 1
+      <Color>k__BackingField: 1
+      <IsConnected>k__BackingField: 0
+      <ConnectedWith>k__BackingField: 0
+      <IsBigSquare>k__BackingField: 0
+    - <Position>k__BackingField: 0
+      <Color>k__BackingField: 1
+      <IsConnected>k__BackingField: 0
+      <ConnectedWith>k__BackingField: 0
+      <IsBigSquare>k__BackingField: 0
+    - <Position>k__BackingField: 2
+      <Color>k__BackingField: 1
+      <IsConnected>k__BackingField: 0
+      <ConnectedWith>k__BackingField: 0
+      <IsBigSquare>k__BackingField: 0
+    - <Position>k__BackingField: 3
+      <Color>k__BackingField: 1
+      <IsConnected>k__BackingField: 0
+      <ConnectedWith>k__BackingField: 0
+      <IsBigSquare>k__BackingField: 0
+  - <GridCoord>k__BackingField: {x: 4, y: 4}
+    <IsSquare>k__BackingField: 0
     <Points>k__BackingField:
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 0, y: 0}
-      <ColorType>k__BackingField: 3
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 1, y: 0}
-      <ColorType>k__BackingField: 3
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 0, y: 1}
-      <ColorType>k__BackingField: 3
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 1, y: 1}
-      <ColorType>k__BackingField: 3
-  - <Size>k__BackingField: {x: 2, y: 2}
-    <Points>k__BackingField:
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 0, y: 0}
-      <ColorType>k__BackingField: 4
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 1, y: 0}
-      <ColorType>k__BackingField: 4
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 0, y: 1}
-      <ColorType>k__BackingField: 4
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 1, y: 1}
-      <ColorType>k__BackingField: 4
-  - <Size>k__BackingField: {x: 4, y: 4}
-    <Points>k__BackingField:
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 0, y: 0}
-      <ColorType>k__BackingField: 1
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 1, y: 0}
-      <ColorType>k__BackingField: 1
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 2, y: 0}
-      <ColorType>k__BackingField: 1
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 3, y: 0}
-      <ColorType>k__BackingField: 1
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 0, y: 1}
-      <ColorType>k__BackingField: 1
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 1, y: 1}
-      <ColorType>k__BackingField: 1
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 2, y: 1}
-      <ColorType>k__BackingField: 1
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 3, y: 1}
-      <ColorType>k__BackingField: 1
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 0, y: 2}
-      <ColorType>k__BackingField: 4
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 1, y: 2}
-      <ColorType>k__BackingField: 4
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 2, y: 2}
-      <ColorType>k__BackingField: 4
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 3, y: 2}
-      <ColorType>k__BackingField: 4
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 0, y: 3}
-      <ColorType>k__BackingField: 4
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 1, y: 3}
-      <ColorType>k__BackingField: 4
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 2, y: 3}
-      <ColorType>k__BackingField: 4
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 3, y: 3}
-      <ColorType>k__BackingField: 4
-  - <Size>k__BackingField: {x: 4, y: 4}
-    <Points>k__BackingField:
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 0, y: 0}
-      <ColorType>k__BackingField: 1
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 1, y: 0}
-      <ColorType>k__BackingField: 1
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 2, y: 0}
-      <ColorType>k__BackingField: 3
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 3, y: 0}
-      <ColorType>k__BackingField: 3
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 0, y: 1}
-      <ColorType>k__BackingField: 1
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 1, y: 1}
-      <ColorType>k__BackingField: 1
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 2, y: 1}
-      <ColorType>k__BackingField: 3
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 3, y: 1}
-      <ColorType>k__BackingField: 3
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 0, y: 2}
-      <ColorType>k__BackingField: 4
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 1, y: 2}
-      <ColorType>k__BackingField: 4
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 2, y: 2}
-      <ColorType>k__BackingField: 3
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 3, y: 2}
-      <ColorType>k__BackingField: 3
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 0, y: 3}
-      <ColorType>k__BackingField: 4
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 1, y: 3}
-      <ColorType>k__BackingField: 4
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 2, y: 3}
-      <ColorType>k__BackingField: 3
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 3, y: 3}
-      <ColorType>k__BackingField: 3
-  - <Size>k__BackingField: {x: 4, y: 4}
-    <Points>k__BackingField:
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 0, y: 0}
-      <ColorType>k__BackingField: 1
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 1, y: 0}
-      <ColorType>k__BackingField: 1
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 2, y: 0}
-      <ColorType>k__BackingField: 2
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 3, y: 0}
-      <ColorType>k__BackingField: 2
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 0, y: 1}
-      <ColorType>k__BackingField: 1
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 1, y: 1}
-      <ColorType>k__BackingField: 1
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 2, y: 1}
-      <ColorType>k__BackingField: 2
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 3, y: 1}
-      <ColorType>k__BackingField: 2
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 0, y: 2}
-      <ColorType>k__BackingField: 4
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 1, y: 2}
-      <ColorType>k__BackingField: 4
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 2, y: 2}
-      <ColorType>k__BackingField: 3
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 3, y: 2}
-      <ColorType>k__BackingField: 3
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 0, y: 3}
-      <ColorType>k__BackingField: 4
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 1, y: 3}
-      <ColorType>k__BackingField: 4
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 2, y: 3}
-      <ColorType>k__BackingField: 3
-    - <IsActive>k__BackingField: 1
-      <Coord>k__BackingField: {x: 3, y: 3}
-      <ColorType>k__BackingField: 3
+    - <Position>k__BackingField: 1
+      <Color>k__BackingField: 2
+      <IsConnected>k__BackingField: 0
+      <ConnectedWith>k__BackingField: 0
+      <IsBigSquare>k__BackingField: 0
+    - <Position>k__BackingField: 0
+      <Color>k__BackingField: 1
+      <IsConnected>k__BackingField: 0
+      <ConnectedWith>k__BackingField: 0
+      <IsBigSquare>k__BackingField: 0
+    - <Position>k__BackingField: 2
+      <Color>k__BackingField: 1
+      <IsConnected>k__BackingField: 0
+      <ConnectedWith>k__BackingField: 0
+      <IsBigSquare>k__BackingField: 0
+    - <Position>k__BackingField: 3
+      <Color>k__BackingField: 2
+      <IsConnected>k__BackingField: 0
+      <ConnectedWith>k__BackingField: 0
+      <IsBigSquare>k__BackingField: 0

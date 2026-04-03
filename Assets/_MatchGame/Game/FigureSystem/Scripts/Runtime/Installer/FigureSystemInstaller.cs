@@ -10,6 +10,8 @@ namespace Game.FigureSystem.Runtime
         
         public override void InstallBindings()
         {
+            Container.BindInstance(database.ConnectionDatabase).AsSingle();
+
             Container.BindFactory<FigureData, Figure, Figure.Factory>()
                 .FromSubContainerResolve()
                 .ByNewContextPrefab<FigureInstaller>(database.FigurePrefab)
@@ -24,6 +26,8 @@ namespace Game.FigureSystem.Runtime
                 .FromSubContainerResolve()
                 .ByNewContextPrefab<PointInstaller>(database.PointPrefab)
                 .UnderTransformGroup("Points");
+
+            Container.Bind<IFigureFactory>().To<Figure.Factory>().FromResolve();
 
             Container.BindInterfacesAndSelfTo<FigureManager>().FromNew().AsSingle().NonLazy();
         }

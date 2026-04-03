@@ -16,3 +16,51 @@ MonoBehaviour:
   - <Goal>k__BackingField: {fileID: 11400000, guid: 919e56d97d9ba4ae68e836bed179eed0,
       type: 2}
     <Amount>k__BackingField: 5
+  <GridSize>k__BackingField: {x: 10, y: 10}
+  <InitialFigures>k__BackingField:
+  - <GridCoord>k__BackingField: {x: 4, y: 4}
+    <IsSquare>k__BackingField: 0
+    <Points>k__BackingField:
+    - <Position>k__BackingField: 1
+      <Color>k__BackingField: 1
+      <IsConnected>k__BackingField: 0
+      <ConnectedWith>k__BackingField: 0
+      <IsBigSquare>k__BackingField: 0
+    - <Position>k__BackingField: 0
+      <Color>k__BackingField: 1
+      <IsConnected>k__BackingField: 0
+      <ConnectedWith>k__BackingField: 0
+      <IsBigSquare>k__BackingField: 0
+    - <Position>k__BackingField: 2
+      <Color>k__BackingField: 1
+      <IsConnected>k__BackingField: 0
+      <ConnectedWith>k__BackingField: 0
+      <IsBigSquare>k__BackingField: 0
+    - <Position>k__BackingField: 3
+      <Color>k__BackingField: 1
+      <IsConnected>k__BackingField: 0
+      <ConnectedWith>k__BackingField: 0
+      <IsBigSquare>k__BackingField: 0
+  - <GridCoord>k__BackingField: {x: 8, y: 0}
+    <IsSquare>k__BackingField: 0
+    <Points>k__BackingField:
+    - <Position>k__BackingField: 1
+      <Color>k__BackingField: 2
+      <IsConnected>k__BackingField: 0
+      <ConnectedWith>k__BackingField: 0
+      <IsBigSquare>k__BackingField: 0
+    - <Position>k__BackingField: 0
+      <Color>k__BackingField: 1
+      <IsConnected>k__BackingField: 0
+      <ConnectedWith>k__BackingField: 0
+      <IsBigSquare>k__BackingField: 0
+    - <Position>k__BackingField: 2
+      <Color>k__BackingField: 1
+      <IsConnected>k__BackingField: 0
+      <ConnectedWith>k__BackingField: 0
+      <IsBigSquare>k__BackingField: 0
+    - <Position>k__BackingField: 3
+      <Color>k__BackingField: 2
+      <IsConnected>k__BackingField: 0
+      <ConnectedWith>k__BackingField: 0
+      <IsBigSquare>k__BackingField: 0
