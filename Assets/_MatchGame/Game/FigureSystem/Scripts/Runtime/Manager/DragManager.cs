@@ -14,11 +14,14 @@ namespace Game.FigureSystem.Runtime
         [Inject] private readonly SignalBus _signalBus;
         [Inject] private readonly IGridManager _gridManager;
         [Inject] private readonly IFigureFactory _figureFactory;
+        [Inject] private readonly FigureSelected.Factory _figureSelectedFactory;
         [Inject] private readonly TrayManager _trayManager;
         [Inject] private readonly Camera _camera;
+        [Inject] private readonly TrayConfig _trayConfig;
 
         private bool _isDragging;
-        private FigureSelected _dragSource;
+        private int _dragSlotIndex;
+        private FigureSelected _dragCopy;
         private FigureData _dragData;
 
         public void Initialize() { }
@@ -34,11 +37,17 @@ namespace Game.FigureSystem.Runtime
                 var hit = Physics2D.OverlapPoint(worldPos);
                 if (hit == null) return;
 
-                var fs = hit.GetComponentInParent<FigureSelected>();
-                if (fs == null) return;
+                var figure = hit.GetComponentInParent<Figure>();
+                if (figure == null || !_trayManager.IsTrayItem(figure)) return;
 
-                _dragSource = fs;
-                _dragData = _trayManager.GetData(fs);
+                _dragSlotIndex = _trayManager.GetSlotIndex(figure);
+                _dragData = _trayManager.GetSlotData(_dragSlotIndex);
+
+                _trayManager.BeginDrag(_dragSlotIndex);
+
+                _dragCopy = _figureSelectedFactory.Create(_dragData);
+                _dragCopy.transform.position = _trayConfig.SelectionPosition;
+
                 _isDragging = true;
             }
             else if (Input.GetMouseButtonUp(0))
@@ -47,7 +56,7 @@ namespace Game.FigureSystem.Runtime
             }
             else
             {
-                _dragSource.transform.position = GetWorldPos();
+                _dragCopy.transform.position = GetWorldPos();
             }
         }
 
@@ -56,7 +65,8 @@ namespace Game.FigureSystem.Runtime
             var worldPos = GetWorldPos();
             var coord = new Vector2Int(Mathf.RoundToInt(worldPos.x), Mathf.RoundToInt(worldPos.y));
 
-            var inBounds = coord.x >= 0 && coord.x < _gridManager.ColumnCount && coord.y >= 0 && coord.y < _gridManager.RowCount;
+            var inBounds = coord.x >= 0 && coord.x < _gridManager.ColumnCount &&
+                           coord.y >= 0 && coord.y < _gridManager.RowCount;
 
             if (inBounds && !_gridManager.IsOccupied(coord))
             {
@@ -64,11 +74,12 @@ namespace Game.FigureSystem.Runtime
             }
             else
             {
-                _dragSource.transform.position = _trayManager.GetTrayPosition(_dragSource);
+                Object.Destroy(_dragCopy.gameObject);
+                _trayManager.CancelDrag(_dragSlotIndex);
             }
 
             _isDragging = false;
-            _dragSource = null;
+            _dragCopy = null;
         }
 
         private void PlaceFigure(Vector2Int coord)
@@ -79,15 +90,16 @@ namespace Game.FigureSystem.Runtime
             figure.Transform.position = coord.ToPosition();
             _gridManager.PlaceFigure(figure, coord);
 
+            Object.Destroy(_dragCopy.gameObject);
+            _trayManager.ConfirmDrag(_dragSlotIndex);
+
             _signalBus.Fire(new FigurePlacedSignal());
-            _trayManager.OnFigurePlaced(_dragSource);
-            Object.Destroy(_dragSource.gameObject);
         }
 
         private Vector3 GetWorldPos()
         {
             var pos = _camera.ScreenToWorldPoint(Input.mousePosition);
-            pos.z   = 0f;
+            pos.z = 0f;
             return pos;
         }
     }

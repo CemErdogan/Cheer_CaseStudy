@@ -6,5 +6,7 @@ namespace Game.FigureSystem.Runtime
     public class TrayConfig : ScriptableObject
     {
         [field: SerializeField] public Vector3[] TrayPositions { get; private set; }
+        
+        [field: SerializeField] public Vector3 SelectionPosition { get; private set; }
     }
 }

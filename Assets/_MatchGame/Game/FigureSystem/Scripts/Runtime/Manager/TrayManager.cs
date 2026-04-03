@@ -2,18 +2,19 @@ using System;
 using Abstractions.FigureSystem;
 using UnityEngine;
 using Zenject;
+using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 namespace Game.FigureSystem.Runtime
 {
     public class TrayManager : IInitializable
     {
-        [Inject] private readonly FigureSelected.Factory _factory;
-        [Inject] private readonly FigureData[]           _figurePool;
-        [Inject] private readonly TrayConfig             _config;
+        [Inject] private readonly IFigureFactory _figureFactory;
+        [Inject] private readonly FigureData[] _figurePool;
+        [Inject] private readonly TrayConfig _config;
 
-        private readonly FigureSelected[] _slots    = new FigureSelected[3];
-        private readonly FigureData[]     _slotData = new FigureData[3];
+        private readonly IFigure[] _slots = new IFigure[3];
+        private readonly FigureData[] _slotData = new FigureData[3];
 
         public void Initialize() => GenerateTray();
 
@@ -22,34 +23,44 @@ namespace Game.FigureSystem.Runtime
             for (int i = 0; i < 3; i++)
             {
                 var data = _figurePool[Random.Range(0, _figurePool.Length)];
-                _slotData[i]             = data;
-                _slots[i]                = _factory.Create(data);
-                _slots[i].transform.position = _config.TrayPositions[i];
+                _slotData[i] = data;
+                _slots[i] = _figureFactory.Create(data);
+                _slots[i].Transform.position = _config.TrayPositions[i];
             }
         }
 
-        public FigureData GetData(FigureSelected source)
+        public bool IsTrayItem(IFigure figure)
         {
-            for (int i = 0; i < 3; i++)
-                if (_slots[i] == source) return _slotData[i];
-            throw new System.InvalidOperationException("FigureSelected not found in tray");
+            foreach (var slot in _slots)
+                if (slot == figure) return true;
+            return false;
         }
 
-        public Vector3 GetTrayPosition(FigureSelected source)
+        public int GetSlotIndex(IFigure figure)
         {
             for (int i = 0; i < 3; i++)
-                if (_slots[i] == source) return _config.TrayPositions[i];
-            return Vector3.zero;
+                if (_slots[i] == figure) return i;
+            throw new InvalidOperationException("Figure not found in tray");
         }
 
-        public void OnFigurePlaced(FigureSelected source)
+        public FigureData GetSlotData(int index) => _slotData[index];
+
+        public Vector3 GetSlotPosition(int index) => _config.TrayPositions[index];
+
+        public void BeginDrag(int index)
         {
-            for (int i = 0; i < 3; i++)
-            {
-                if (_slots[i] != source) continue;
-                _slots[i] = null;
-                break;
-            }
+            _slots[index].GameObject.SetActive(false);
+        }
+
+        public void CancelDrag(int index)
+        {
+            _slots[index].GameObject.SetActive(true);
+        }
+
+        public void ConfirmDrag(int index)
+        {
+            Object.Destroy(_slots[index].GameObject);
+            _slots[index] = null;
 
             if (AllSlotsEmpty()) GenerateTray();
         }
