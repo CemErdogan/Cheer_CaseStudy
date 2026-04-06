@@ -13,11 +13,11 @@ namespace Game.LevelSystem.Runtime
         [Inject] private readonly SignalBus _signalBus;
         [Inject] private readonly LevelDatabase _database;
         [Inject] private readonly ISaveManager _saveManager;
-        
+
         private int _currentLevelIndex;
         private ILevel _currentLevel;
         private readonly Queue<int> _rndQueue = new();
-        
+
         public void Initialize()
         {
             _currentLevelIndex = _saveManager.Load<int>(SaveKeys.LevelIndex);
@@ -38,7 +38,7 @@ namespace Game.LevelSystem.Runtime
             }
 #endif
             _signalBus.Subscribe<ICompleteLevelSignal>(OnLevelCompleted);
-
+            
             LoadLevel();
         }
 

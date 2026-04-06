@@ -20,7 +20,6 @@ namespace Game.LevelSystem.Runtime
             }
 
             Container.DeclareSignalWithInterfaces<CompleteLevelSignalSignal>().OptionalSubscriber();
-            Container.DeclareSignalWithInterfaces<SetupCameraSignal>().OptionalSubscriber();
         }
     }
     

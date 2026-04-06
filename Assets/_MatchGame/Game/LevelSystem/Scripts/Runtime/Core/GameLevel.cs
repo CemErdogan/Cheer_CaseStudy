@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Abstractions.CameraSystem;
 using Abstractions.FigureSystem;
@@ -26,17 +27,17 @@ namespace Game.LevelSystem.Runtime
 
             if (InitialFigures == null) return;
 
+            var figures = new List<Transform>();
             foreach (var figureData in InitialFigures)
             {
                 var figure   = _figureFactory.Create(figureData);
                 var worldPos = figureData.GridCoord.ToPosition();
                 figure.Transform.position = worldPos;
                 _gridManager.PlaceFigure(figure, figureData.GridCoord);
+                figures.Add(figure.Transform);
             }
-
-            var targets = _gridManager.GetAllFigures().Select(f => f.Transform).ToArray();
-            if (targets.Length > 0)
-                _signalBus.Fire(new SetupCameraSignal(targets[0], targets));
+            
+            _signalBus.AbstractFire(new SetupCameraSignal(figures.ToArray()));
         }
 
         public void Unload()

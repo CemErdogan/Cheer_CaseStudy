@@ -18,7 +18,7 @@ MonoBehaviour:
     <Amount>k__BackingField: 5
   <GridSize>k__BackingField: {x: 10, y: 10}
   <InitialFigures>k__BackingField:
-  - <GridCoord>k__BackingField: {x: -2, y: 0}
+  - <GridCoord>k__BackingField: {x: 2, y: 0}
     <IsSquare>k__BackingField: 0
     <Points>k__BackingField:
     - <Position>k__BackingField: 1
@@ -41,7 +41,7 @@ MonoBehaviour:
       <IsConnected>k__BackingField: 0
       <ConnectedWith>k__BackingField: 0
       <IsBigSquare>k__BackingField: 0
-  - <GridCoord>k__BackingField: {x: 2, y: 0}
+  - <GridCoord>k__BackingField: {x: 4, y: 0}
     <IsSquare>k__BackingField: 0
     <Points>k__BackingField:
     - <Position>k__BackingField: 1
