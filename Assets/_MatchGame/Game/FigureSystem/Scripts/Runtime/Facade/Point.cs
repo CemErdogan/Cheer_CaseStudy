@@ -60,7 +60,11 @@ namespace Game.FigureSystem.Runtime
 
         public void AnimateDestroy(Vector3 center, float duration, Action onComplete)
         {
-            _view.AnimateDestroy(center, duration, onComplete);
+            _view.AnimateDestroy(center, duration, () =>
+            {
+                onComplete?.Invoke();
+                Destroy(gameObject);
+            });
         }
 
         public class Factory : PlaceholderFactory<PointData, Point>

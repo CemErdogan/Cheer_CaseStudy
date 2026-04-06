@@ -1,3 +1,4 @@
+using Abstractions.CameraSystem;
 using Abstractions.LevelSystem;
 using UnityEngine;
 using Zenject;
@@ -19,6 +20,7 @@ namespace Game.LevelSystem.Runtime
             }
 
             Container.DeclareSignalWithInterfaces<CompleteLevelSignalSignal>().OptionalSubscriber();
+            Container.DeclareSignalWithInterfaces<SetupCameraSignal>().OptionalSubscriber();
         }
     }
     

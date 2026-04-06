@@ -1,3 +1,5 @@
+using System.Linq;
+using Abstractions.CameraSystem;
 using Abstractions.FigureSystem;
 using Abstractions.GridSystem;
 using Abstractions.LevelSystem;
@@ -16,6 +18,7 @@ namespace Game.LevelSystem.Runtime
 
         [Inject] private IFigureFactory _figureFactory;
         [Inject] private IGridManager _gridManager;
+        [Inject] private SignalBus _signalBus;
 
         public void Load()
         {
@@ -30,6 +33,10 @@ namespace Game.LevelSystem.Runtime
                 figure.Transform.position = worldPos;
                 _gridManager.PlaceFigure(figure, figureData.GridCoord);
             }
+
+            var targets = _gridManager.GetAllFigures().Select(f => f.Transform).ToArray();
+            if (targets.Length > 0)
+                _signalBus.Fire(new SetupCameraSignal(targets[0], targets));
         }
 
         public void Unload()

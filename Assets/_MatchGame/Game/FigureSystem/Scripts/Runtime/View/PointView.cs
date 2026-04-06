@@ -35,6 +35,7 @@ namespace Game.FigureSystem.Runtime
 
         public void SetConnectedVisual(ConnectionData data)
         {
+            transform.DOKill();
             var targetPos   = data.LocalPosition + data.PositionOffset;
             var targetScale = data.ScaleAdjustment;
 
@@ -44,6 +45,7 @@ namespace Game.FigureSystem.Runtime
 
         public void AnimateDestroy(Vector3 center, float duration, Action onComplete)
         {
+            transform.DOKill();
             var halfDuration = duration * 0.5f;
             var sequence = DOTween.Sequence();
 

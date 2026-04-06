@@ -16,19 +16,19 @@ MonoBehaviour:
     <LocalPosition>k__BackingField: {x: -0.25, y: 0.25, z: 0}
     <LocalScale>k__BackingField: {x: 0.4, y: 0.4, z: 1}
     <PositionOffset>k__BackingField: {x: 0.05, y: -0.05, z: 0}
-    <ScaleAdjustment>k__BackingField: {x: 0.3, y: 0.3, z: 1}
+    <ScaleAdjustment>k__BackingField: {x: 0.4, y: 0.4, z: 1}
   topRight:
     <LocalPosition>k__BackingField: {x: 0.25, y: 0.25, z: 0}
     <LocalScale>k__BackingField: {x: 0.4, y: 0.4, z: 1}
     <PositionOffset>k__BackingField: {x: -0.05, y: -0.05, z: 0}
-    <ScaleAdjustment>k__BackingField: {x: 0.3, y: 0.3, z: 1}
+    <ScaleAdjustment>k__BackingField: {x: 0.4, y: 0.4, z: 1}
   bottomLeft:
     <LocalPosition>k__BackingField: {x: -0.25, y: -0.25, z: 0}
     <LocalScale>k__BackingField: {x: 0.4, y: 0.4, z: 1}
     <PositionOffset>k__BackingField: {x: 0.05, y: 0.05, z: 0}
-    <ScaleAdjustment>k__BackingField: {x: 0.3, y: 0.3, z: 1}
+    <ScaleAdjustment>k__BackingField: {x: 0.4, y: 0.4, z: 1}
   bottomRight:
     <LocalPosition>k__BackingField: {x: 0.25, y: -0.25, z: 0}
     <LocalScale>k__BackingField: {x: 0.4, y: 0.4, z: 1}
     <PositionOffset>k__BackingField: {x: -0.05, y: 0.05, z: 0}
-    <ScaleAdjustment>k__BackingField: {x: 0.3, y: 0.3, z: 1}
+    <ScaleAdjustment>k__BackingField: {x: 0.4, y: 0.4, z: 1}

@@ -57,15 +57,15 @@ namespace Game.MatchSystem.Runtime
             if (sourcePoint.IsConnected) return false;
 
             var newPointData = new PointData(
-                position:      targetSlot,
-                color:         sourcePoint.Color,
-                isConnected:   true,
-                connectedWith: sourceSlot);
+                position: targetSlot,
+                color:    sourcePoint.Color);
 
             var targetSlotData = connDb.GetData(targetSlot);
             var newPoint       = pointFactory.Create(newPointData);
             newPoint.Initialize(newPointData, figure, targetSlotData);
             figure.AddPoint(targetSlot, newPoint);
+
+            newPoint.SetConnection(sourceSlot, targetSlotData);
 
             var sourceSlotData = connDb.GetData(sourceSlot);
             sourcePoint.SetConnection(targetSlot, sourceSlotData);
